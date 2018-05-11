@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: docker-deploy
+  labels:
+    #Project ID
+    app: my-docker-203607
+spec:
+  #Run two instances of our application
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: my-docker-203607
+    spec:
+      #Container details
+      containers:
+        - name: docker-app
+          image: gcr.io/my-docker-203607/docker-app
+          imagePullPolicy: Always
+          #Ports to expose
+          ports:
+          - containerPort: 8000
